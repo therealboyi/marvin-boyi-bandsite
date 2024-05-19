@@ -215,4 +215,56 @@ header {
       }
     }
   }
+// Footer
+footer {
+    background-color: $primary-color;
+    color: $white-color;
+    padding: 2rem;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
   
+    .footer__contact {
+      p,
+      a {
+        @extend .footer-copy;
+        color: $white-color;
+        text-decoration: none;
+        padding-bottom: 0.5rem;
+      }
+  
+      .footer__bandsite {
+        font-size: 24px;
+        padding-bottom: 0.5rem;
+      }
+    }
+  
+    @media (min-width: 768px) and (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    @media (min-width: 1025px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  // Social icons
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .footer__contact h2 {
+    font-size: 24px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .footer__contact p,
+  .footer__contact a {
+    margin: 0.5rem 0;
+    padding-bottom: 0.5rem;
+  }
+    

@@ -16,6 +16,8 @@ body {
 .body-copy,
 .biography .band__info p,
 .footer-copy,
+footer .footer__contact p,
+footer .footer__contact a,
 .labels-buttons,
 .bold-quote,
 .biography .band__info .bold-quote {
@@ -34,7 +36,9 @@ body {
 }
 
 .body-copy, .biography .band__info p,
-.footer-copy {
+.footer-copy,
+footer .footer__contact p,
+footer .footer__contact a {
   font-size: 14px;
   line-height: 22px;
 }
@@ -180,4 +184,52 @@ header .nav .nav__list .nav__item .nav__link:hover::after {
 }
 .gallery .gallery__images img:hover {
   filter: grayscale(100%);
+}
+
+footer {
+  background-color: #323232;
+  color: #FFFFFF;
+  padding: 2rem;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+footer .footer__contact p,
+footer .footer__contact a {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding-bottom: 0.5rem;
+}
+footer .footer__contact .footer__bandsite {
+  font-size: 24px;
+  padding-bottom: 0.5rem;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  footer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1025px) {
+  footer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.footer__contact h2 {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.footer__contact p,
+.footer__contact a {
+  margin: 0.5rem 0;
+  padding-bottom: 0.5rem;
 }
