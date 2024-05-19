@@ -1,0 +1,98 @@
+body {
+  font-family: "Avenir Next", sans-serif;
+  color: #323232;
+  background-color: #FAFAFA;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.page-header,
+.section-header,
+.subheader,
+.body-copy,
+.footer-copy,
+.labels-buttons,
+.bold-quote {
+  padding: 0.25rem 0;
+}
+
+.page-header,
+.section-header {
+  font-weight: 700;
+}
+
+.subheader {
+  font-weight: 600;
+}
+
+.body-copy,
+.footer-copy {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.labels-buttons {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.bold-quote {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+header {
+  background-color: #323232;
+  color: #FFFFFF;
+  padding: 1rem;
+}
+header .nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+header .nav .nav__logo {
+  font-size: 36px;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+header .nav .nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  header .nav .nav__list {
+    margin-left: 2rem;
+  }
+}
+header .nav .nav__list .nav__item .nav__link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+header .nav .nav__list .nav__item .nav__link.nav__link--active {
+  font-weight: 700;
+}
+header .nav .nav__list .nav__item .nav__link.nav__link--active::after, header .nav .nav__list .nav__item .nav__link:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #FFFFFF;
+}
+header .nav .nav__list .nav__item .nav__link:hover::after {
+  height: 2px;
+}

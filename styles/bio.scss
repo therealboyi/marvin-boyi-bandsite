@@ -1,0 +1,123 @@
+// Variables
+$primary-color: #323232;
+$white-color: #FFFFFF;
+$background-color: #FAFAFA;
+$secondary-color: #AFAFAF;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Base styles
+body {
+  font-family: 'Avenir Next', sans-serif;
+  color: $primary-color;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+// Text styles
+.page-header,
+.section-header,
+.subheader,
+.body-copy,
+.footer-copy,
+.labels-buttons,
+.bold-quote {
+  padding: 0.25rem 0;
+}
+
+.page-header,
+.section-header {
+  font-weight: 700;
+}
+
+.subheader {
+  font-weight: 600;
+}
+
+.body-copy,
+.footer-copy {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.labels-buttons {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.bold-quote {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+// Header
+header {
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 1rem;
+
+  .nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .nav__logo {
+      font-size: 36px;
+      color: $white-color;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+
+    .nav__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 2rem;
+
+      @media (min-width: 768px) {
+        margin-left: 2rem;
+      }
+
+      .nav__item {
+        .nav__link {
+          color: $white-color;
+          text-decoration: none;
+          font-weight: 400;
+          padding: 0 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          &.nav__link--active {
+            font-weight: 700;
+          }
+
+          &.nav__link--active::after,
+          &:hover::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: $white-color;
+          }
+
+          &:hover::after {
+            height: 2px;
+          }
+        }
+      }
+    }
+  }
+}
