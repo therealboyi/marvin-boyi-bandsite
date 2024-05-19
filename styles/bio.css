@@ -14,9 +14,11 @@ body {
 .subheader,
 .biography .band__info h3,
 .body-copy,
+.biography .band__info p,
+.footer-copy,
 footer .footer__contact p,
 footer .footer__contact a,
-.biography .band__info p,
+.labels-buttons,
 .bold-quote,
 .biography .band__info .bold-quote {
   padding: 0.25rem 0;
@@ -33,10 +35,18 @@ footer .footer__contact a,
   font-weight: 600;
 }
 
-.body-copy, footer .footer__contact p,
-footer .footer__contact a, .biography .band__info p {
+.body-copy, .biography .band__info p,
+.footer-copy,
+footer .footer__contact p,
+footer .footer__contact a {
   font-size: 14px;
   line-height: 22px;
+}
+
+.labels-buttons {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 700;
 }
 
 .bold-quote, .biography .band__info .bold-quote {
@@ -57,8 +67,14 @@ footer .footer__contact a, .biography .band__info p {
     font-size: 18px;
     line-height: 26px;
   }
-  .body-copy, footer .footer__contact p,
-  footer .footer__contact a, .biography .band__info p,
+  .body-copy, .biography .band__info p,
+  .footer-copy,
+  footer .footer__contact p,
+  footer .footer__contact a {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .labels-buttons,
   .bold-quote,
   .biography .band__info .bold-quote {
     font-size: 16px;
@@ -94,6 +110,9 @@ header .nav {
   align-items: center;
 }
 header .nav .nav__logo {
+  font-size: 36px;
+  color: #FFFFFF;
+  text-decoration: none;
   margin-left: 1rem;
 }
 header .nav .nav__list {
@@ -134,6 +153,12 @@ header .nav .nav__list .nav__item .nav__link:hover::after {
 }
 
 @media (min-width: 1025px) {
+  .nav__logo {
+    margin-left: 0;
+  }
+  .nav__link--active::after {
+    bottom: -30px;
+  }
   .grid-container {
     padding: 0 4rem;
   }
@@ -145,6 +170,12 @@ header .nav .nav__list .nav__item .nav__link:hover::after {
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
+  .nav__logo {
+    margin-left: 0;
+  }
+  .nav__link--active::after {
+    bottom: -30px;
+  }
   .grid-container {
     padding: 0 2rem;
   }
