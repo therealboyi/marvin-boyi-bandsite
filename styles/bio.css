@@ -9,6 +9,7 @@ body {
 
 .page-header,
 .section-header,
+.gallery .section__title,
 .biography .section__title,
 .subheader,
 .biography .band__info h3,
@@ -23,6 +24,7 @@ body {
 
 .page-header,
 .section-header,
+.gallery .section__title,
 .biography .section__title {
   font-weight: 700;
 }
@@ -154,4 +156,28 @@ header .nav .nav__list .nav__item .nav__link:hover::after {
 }
 .biography .band__photo {
   align-self: flex-start;
+}
+
+.gallery {
+  padding: 2rem;
+  text-align: left;
+}
+.gallery .section__title {
+  padding-bottom: 0.5rem;
+}
+.gallery .gallery__images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .gallery .gallery__images {
+    grid-template-columns: 1fr;
+  }
+}
+.gallery .gallery__images img {
+  width: 100%;
+}
+.gallery .gallery__images img:hover {
+  filter: grayscale(100%);
 }

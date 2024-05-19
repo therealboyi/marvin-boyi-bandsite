@@ -187,4 +187,32 @@ header {
       align-self: flex-start;
     }
   }
+  // Gallery section
+.gallery {
+    padding: 2rem;
+    text-align: left;
+  
+    .section__title {
+      @extend .section-header;
+      padding-bottom: 0.5rem;
+    }
+  
+    .gallery__images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+  
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+  
+      img {
+        width: 100%;
+  
+        &:hover {
+          filter: grayscale(100%);
+        }
+      }
+    }
+  }
   
