@@ -26,8 +26,6 @@ body {
 .section-header,
 .subheader,
 .body-copy,
-.footer-copy,
-.labels-buttons,
 .bold-quote {
   padding: 0.25rem 0;
 }
@@ -41,16 +39,9 @@ body {
   font-weight: 600;
 }
 
-.body-copy,
-.footer-copy {
+.body-copy {
   font-size: 14px;
   line-height: 22px;
-}
-
-.labels-buttons {
-  font-size: 12px;
-  line-height: 20px;
-  font-weight: 700;
 }
 
 .bold-quote {
@@ -73,12 +64,6 @@ body {
   }
 
   .body-copy,
-  .footer-copy {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .labels-buttons,
   .bold-quote {
     font-size: 16px;
     line-height: 24px;
@@ -114,9 +99,6 @@ header {
     align-items: center;
 
     .nav__logo {
-      font-size: 36px;
-      color: $white-color;
-      text-decoration: none;
       margin-left: 1rem;
     }
 
@@ -166,14 +148,6 @@ header {
 }
 
 @media (min-width: 1025px) {
-  .nav__logo {
-    margin-left: 0;
-  }
-
-  .nav__link--active::after {
-    bottom: -30px;
-  }
-
   .grid-container {
     padding: 0 4rem;
   }
@@ -188,14 +162,6 @@ header {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .nav__logo {
-    margin-left: 0;
-  }
-
-  .nav__link--active::after {
-    bottom: -30px;
-  }
-
   .grid-container {
     padding: 0 2rem;
   }
@@ -399,7 +365,7 @@ footer {
   .footer__contact {
     p,
     a {
-      @extend .footer-copy;
+      @extend .body-copy;
       color: $white-color;
       text-decoration: none;
       padding-bottom: 0.5rem;
