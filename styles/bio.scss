@@ -121,3 +121,70 @@ header {
     }
   }
 }
+// Biography section
+.biography {
+    padding: 2rem;
+    text-align: left;
+  
+    .section__title {
+      @extend .section-header;
+      padding-bottom: 0.5rem;
+    }
+  
+    .band__info {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: flex-start;
+      text-align: left;
+  
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+      }
+  
+      .text-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+  
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+      }
+  
+      p {
+        @extend .body-copy;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+  
+      .quote {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 3px solid $secondary-color;
+        padding-bottom: 0.5rem;
+      }
+  
+      .bold-quote {
+        @extend .bold-quote;
+        grid-column: 1 / -1;
+      }
+  
+      h3 {
+        @extend .subheader;
+        margin-bottom: 0.5rem;
+        grid-column: span 2;
+        padding-bottom: 0.5rem;
+      }
+    }
+  
+    .band__photo {
+      align-self: flex-start;
+    }
+  }
+  
