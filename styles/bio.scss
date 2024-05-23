@@ -492,6 +492,12 @@ footer {
       display: flex;
       align-items: flex-start;
       margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid $secondary-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
 
       .comments__avatar {
         width: 40px;

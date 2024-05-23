@@ -431,6 +431,11 @@ footer .footer__contact .footer__bandsite {
   display: flex;
   align-items: flex-start;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #AFAFAF;
+}
+.comments__list .comments__item:last-child {
+  border-bottom: none;
 }
 .comments__list .comments__item .comments__avatar {
   width: 40px;
