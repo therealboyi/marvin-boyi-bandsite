@@ -472,3 +472,16 @@ footer .footer__contact .footer__bandsite {
 .comments__list .comments__item .comments__content .comments__text {
   font-size: 1rem;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .comments {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+}
+@media (min-width: 1025px) {
+  .comments {
+    padding-left: 25rem;
+    padding-right: 25rem;
+  }
+}
