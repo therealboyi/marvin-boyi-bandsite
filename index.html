@@ -113,15 +113,29 @@
       <section class="comments">
         <h2 class="section__title">Join the Conversation</h2>
         <div class="comments__form-container">
-          <img src="./assets/images/avatar-placeholder.png" alt="User Avatar" class="comments__avatar" />
+          <img
+            src="./assets/images/Mohan-muruge.jpg"
+            alt="User Avatar"
+            class="comments__avatar"
+          />
           <div class="comments__form">
-            <input type="text" id="name" class="comments__input" placeholder="Enter your name" />
-            <textarea id="comment" class="comments__textarea" placeholder="Add a new comment"></textarea>
+            <label for="name" class="comments__label">NAME</label>
+            <input
+              type="text"
+              id="name"
+              class="comments__input"
+              placeholder="Enter your name"
+            />
+            <label for="comment" class="comments__label">COMMENT</label>
+            <textarea
+              id="comment"
+              class="comments__textarea"
+              placeholder="Add a new comment"
+            ></textarea>
             <button id="submitComment" class="comments__button">Comment</button>
           </div>
         </div>
-        <div id="commentsContainer" class="comments__list">
-        </div>
+        <div id="commentsContainer" class="comments__list"></div>
       </section>
     </main>
     <footer>
@@ -164,6 +178,7 @@
         </a>
       </div>
       <p>Copyright The Bees Knees © 2023 All Rights Reserved</p>
-    </footer><script src="./scripts/index-page.js"></script>
+    </footer>
+    <script src="./scripts/index-page.js"></script>
   </body>
 </html>
