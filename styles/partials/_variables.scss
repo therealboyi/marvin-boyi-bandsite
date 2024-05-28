@@ -1,0 +1,19 @@
+// Colors
+$primary-color: #323232; // BandSite-Black
+$white-color: #FFFFFF; // White
+$background-color: #FAFAFA; // Alabaster
+$secondary-color: #AFAFAF; // Silver
+$gallery-background-color: #F0F0F0; // Gallery background color
+$placeholder-color: #E1E1E1; // Mercury
+$inactive-nav-color: #E1E1E1; // Inactive nav link color
+$error-color: #D22D2D; // Error color
+
+// Button colors
+$button-color: $primary-color; // Use primary color for buttons
+$button-hover-color: darken($button-color, 10%); // Darker shade for hover state
+$button-text-color: $white-color; // White text on buttons
+
+// Breakpoints
+$mobile-breakpoint: 48rem; // 768px
+$tablet-breakpoint: 48rem; // 768px
+$desktop-breakpoint: 80rem; // 1280px
