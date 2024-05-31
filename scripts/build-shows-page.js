@@ -1,51 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const musicCardData = {
-        album: "Beautiful Beasts Album",
-        song: "Stripes of Yellow x For The Stings",
-        artist: "MØ",
-        songTitle: "Blur (feat. Foster The People)",
-        embeddedPlayer: `
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/93264012&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"></iframe>`
-    };
+document.addEventListener('DOMContentLoaded', async () => {
+    const apiKey = '26032028-ded2-4965-b2ae-6996663fe119'; 
+    const api = new BandSiteApi(apiKey);
 
-    const ticketCardData = [
-        {
-            date: "Mon Sept 09 2024",
-            venue: "Ronald Lane",
-            location: "San Francisco, CA",
-            ticketUrl: "#"
-        },
-        {
-            date: "Tue Sept 17 2024",
-            venue: "Pier 3 East",
-            location: "San Francisco, CA",
-            ticketUrl: "#"
-        },
-        {
-            date: "Sat Oct 12 2024",
-            venue: "View Lounge",
-            location: "San Francisco, CA",
-            ticketUrl: "#"
-        },
-        {
-            date: "Thu Oct 24 2024",
-            venue: "The Fillmore",
-            location: "San Francisco, CA",
-            ticketUrl: "#"
-        },
-        {
-            date: "Sun Nov 03 2024",
-            venue: "Fox Theater",
-            location: "Oakland, CA",
-            ticketUrl: "#"
-        },
-        {
-            date: "Fri Nov 15 2024",
-            venue: "The Warfield",
-            location: "San Francisco, CA",
-            ticketUrl: "#"
-        }
-    ];
+    async function displayShows() {
+        const shows = await api.getShows();
+        const ticketCardData = shows.map(show => ({
+            date: new Date(show.date).toDateString(),
+            venue: show.place,
+            location: show.location,
+            ticketUrl: '#'
+        }));
+        createTicketCards(ticketCardData);
+    }
 
     function createMusicCard(data) {
         const musicSection = document.querySelector('.music-section');
@@ -55,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const textContainer = document.createElement('div');
         textContainer.classList.add('music-card__text-container');
 
-        const albumTitle = document.createElement('h3');  
-        albumTitle.classList.add('subheader');  
+        const albumTitle = document.createElement('h3');
+        albumTitle.classList.add('subheader');
         albumTitle.textContent = data.album;
         textContainer.appendChild(albumTitle);
 
-        const songTitle = document.createElement('h1');  
-        songTitle.classList.add('page-header');  
+        const songTitle = document.createElement('h1');
+        songTitle.classList.add('page-header');
         songTitle.textContent = data.song;
         textContainer.appendChild(songTitle);
 
@@ -273,8 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    createMusicCard(musicCardData);
-    createTicketCards(ticketCardData);
+    await displayShows();
+    createMusicCard({
+        album: "Beautiful Beasts Album",
+        song: "Stripes of Yellow x For The Stings",
+        artist: "MØ",
+        songTitle: "Blur (feat. Foster The People)",
+        embeddedPlayer: `
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/93264012&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"></iframe>`
+    });
     addHoverAndClickEvents();
     adjustBuyButtonSize();
     adjustCardPadding();

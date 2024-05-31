@@ -1,37 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const commentsContainer = document.getElementById('commentsContainer');
     const commentForm = document.getElementById('commentForm');
 
-    // Array of default comments
-    const comments = [
-        {
-            name: "Victor Pinto",
-            date: "2023-11-02T00:00:00Z",
-            text: "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-            avatar: {
-                url: "",
-                description: "Gray Avatar"
-            }
-        },
-        {
-            name: "Christina Cabrera",
-            date: "2023-10-28T00:00:00Z",
-            text: "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-            avatar: {
-                url: "",
-                description: "Gray Avatar"
-            }
-        },
-        {
-            name: "Isaac Tadesse",
-            date: "2023-10-20T00:00:00Z",
-            text: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-            avatar: {
-                url: "",
-                description: "Gray Avatar"
-            }
-        }
-    ];
+    const apiKey = '26032028-ded2-4965-b2ae-6996663fe119';  
+    const api = new BandSiteApi(apiKey);
 
     function createElementWithClass(tag, className) {
         const el = document.createElement(tag);
@@ -64,34 +36,38 @@ document.addEventListener('DOMContentLoaded', function () {
         headerEl.appendChild(nameEl);
 
         const dateEl = createElementWithClass('div', 'comments__date');
-        dateEl.innerText = formatTimestamp(new Date(comment.date));
+        dateEl.innerText = formatTimestamp(new Date(comment.timestamp));
         dateEl.classList.add('timestamp');
-        dateEl.setAttribute('data-time', comment.date);
+        dateEl.setAttribute('data-time', comment.timestamp);
         headerEl.appendChild(dateEl);
 
         const textEl = createElementWithClass('div', 'comments__text');
-        textEl.innerText = comment.text;
+        textEl.innerText = comment.comment;
         contentEl.appendChild(textEl);
 
         commentEl.appendChild(contentEl);
         return commentEl;
     }
 
-    function displayComments(comments) {
+    async function displayComments() {
         commentsContainer.innerHTML = '';
+        const comments = await api.getComments();
         comments.forEach(comment => {
-            const commentEl = createCommentElement(comment);
+            const commentEl = createCommentElement({
+                name: comment.name,
+                timestamp: comment.timestamp,
+                comment: comment.comment,
+                avatar: { url: '', description: 'Gray Avatar' }
+            });
             commentsContainer.appendChild(commentEl);
         });
         updateTimestamps();
     }
 
-    function addNewComment(event) {
+    async function addNewComment(event) {
         event.preventDefault();
         const name = document.getElementById('name').value.trim();
-        const text = document.getElementById('comment').value.trim();
-        const date = new Date().toISOString();
-        const avatar = { url: "", description: `Avatar of ${name}` };
+        const commentText = document.getElementById('comment').value.trim();
 
         const nameInput = document.getElementById('name');
         const commentInput = document.getElementById('comment');
@@ -99,12 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
         commentInput.classList.remove('error');
 
         if (!name) nameInput.classList.add('error');
-        if (!text) commentInput.classList.add('error');
+        if (!commentText) commentInput.classList.add('error');
 
-        if (name && text) {
-            const newComment = { name, date, text, avatar };
-            comments.unshift(newComment);
-            displayComments(comments);
+        if (name && commentText) {
+            const newComment = { name, comment: commentText };
+            await api.postComment(newComment);
+            await displayComments();
             document.getElementById('name').value = '';
             document.getElementById('comment').value = '';
         } else {
@@ -132,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateTimestamps() {
         const timestamps = document.querySelectorAll('.timestamp');
         timestamps.forEach(timestamp => {
-            const postedTime = new Date(timestamp.getAttribute('data-time'));
+            const postedTime = new Date(parseInt(timestamp.getAttribute('data-time')));
             timestamp.innerText = formatTimestamp(postedTime);
         });
     }
@@ -237,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    displayComments(comments);
+    await displayComments();
     commentForm.addEventListener('submit', addNewComment);
     setInterval(updateTimestamps, 60000);
     updateLayout();
