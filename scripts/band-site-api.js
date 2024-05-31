@@ -32,4 +32,9 @@ class BandSiteApi {
         const response = await axios.get(`${this.baseUrl}comments/${id}?api_key=${this.apiKey}`);
         return response.data;
     }
+
+    async getShows() {
+        const response = await axios.get(`${this.baseUrl}showdates?api_key=${this.apiKey}`);
+        return response.data;
+    }
 }

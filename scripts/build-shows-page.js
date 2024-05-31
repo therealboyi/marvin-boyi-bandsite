@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const navLinks = document.querySelectorAll('.nav__link');
         navLinks.forEach(link => {
             if (window.innerWidth <= 767) {
-                link.style.setProperty('--underline-bottom', '-15px'); // Adjust this value as needed
+                link.style.setProperty('--underline-bottom', '-15px'); 
             } else {
                 link.style.removeProperty('--underline-bottom');
             }
