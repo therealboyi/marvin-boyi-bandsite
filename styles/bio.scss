@@ -6,7 +6,7 @@
 $primary-color: #323232; // BandSite-Black
 $white-color: #ffffff; // White
 $background-color: #fafafa; // Alabaster
-$secondary-color: #afafaf; // Silver
+$secondary-color: #ffffff; // Silver
 $gallery-background-color: #fafafa; // Gallery background color
 $placeholder-color: #e1e1e1; // Mercury
 $inactive-nav-color: #e1e1e1; // Inactive nav link color
@@ -418,25 +418,35 @@ body {
     }
   }
 
-  .gallery__images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .gallery__container {
+    display: flex;
+    flex-wrap: wrap;
     gap: 2.25rem;
 
     @media (max-width: 767px) {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: 1rem;
     }
 
-    img {
-      width: 100%;
+    .gallery__item {
+      flex: 1 1 calc(33.333% - 2.25rem);
 
-      &:hover {
-        filter: grayscale(100%);
+      @media (max-width: 767px) {
+        flex: 1 1 100%;
+      }
+
+      img {
+        width: 100%;
+        display: block;
+
+        &:hover {
+          filter: grayscale(100%);
+        }
       }
     }
   }
 }
+
 
 // Footer
 .footer {
@@ -906,3 +916,4 @@ a {
     }
   }
 }
+
