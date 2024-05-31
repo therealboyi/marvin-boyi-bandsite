@@ -11,6 +11,21 @@ document.addEventListener('DOMContentLoaded', async function () {
         return el;
     }
 
+    function getLikedComments() {
+        const likedComments = localStorage.getItem('likedComments');
+        return likedComments ? JSON.parse(likedComments) : {};
+    }
+
+    function setLikedComment(commentId, liked) {
+        const likedComments = getLikedComments();
+        if (liked) {
+            likedComments[commentId] = true;
+        } else {
+            delete likedComments[commentId];
+        }
+        localStorage.setItem('likedComments', JSON.stringify(likedComments));
+    }
+
     function createCommentElement(comment) {
         const commentEl = createElementWithClass('div', 'comments__item');
         const avatarEl = createElementWithClass('div', 'comments__avatar');
@@ -18,9 +33,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             const imgEl = document.createElement('img');
             imgEl.src = comment.avatar.url;
             imgEl.alt = comment.avatar.description;
-            imgEl.style.width = '100%';
-            imgEl.style.height = '100%';
-            imgEl.style.borderRadius = '50%';
+            imgEl.classList.add('comments__avatar');
             avatarEl.appendChild(imgEl);
         } else {
             avatarEl.classList.add('comments__avatar--placeholder');
@@ -45,6 +58,54 @@ document.addEventListener('DOMContentLoaded', async function () {
         textEl.innerText = comment.comment;
         contentEl.appendChild(textEl);
 
+        const footerEl = createElementWithClass('div', 'comments__footer');
+
+        const likesEl = createElementWithClass('div', 'comments__likes');
+        likesEl.innerText = `Likes: ${comment.likes}`;
+        footerEl.appendChild(likesEl);
+
+        const likeButton = createElementWithClass('button', 'comments__button');
+        const likeIcon = createElementWithClass('img', 'comments__icon');
+        likeIcon.src = './assets/icons/icon-like.svg';
+        likeIcon.alt = 'Like';
+        likeButton.appendChild(likeIcon);
+
+        // Set initial liked state from localStorage
+        const likedComments = getLikedComments();
+        let liked = likedComments[comment.id] || false;
+        if (liked) {
+            likeButton.classList.add('comments__button--liked');
+        }
+
+        likeButton.addEventListener('click', async () => {
+            liked = !liked;
+            setLikedComment(comment.id, liked);
+            likeButton.classList.toggle('comments__button--liked', liked);
+
+            if (liked) {
+                comment.likes++;
+                await api.likeComment(comment.id);
+            } else {
+                comment.likes--;
+            }
+
+            likesEl.innerText = `Likes: ${comment.likes}`;
+        });
+
+        footerEl.appendChild(likeButton);
+
+        const deleteButton = createElementWithClass('button', 'comments__button');
+        const deleteIcon = createElementWithClass('img', 'comments__icon');
+        deleteIcon.src = './assets/icons/icon-delete.svg';
+        deleteIcon.alt = 'Delete';
+        deleteButton.appendChild(deleteIcon);
+        deleteButton.addEventListener('click', async () => {
+            await api.deleteComment(comment.id);
+            await displayComments();
+        });
+        footerEl.appendChild(deleteButton);
+
+        contentEl.appendChild(footerEl);
         commentEl.appendChild(contentEl);
         return commentEl;
     }
@@ -57,6 +118,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 name: comment.name,
                 timestamp: comment.timestamp,
                 comment: comment.comment,
+                likes: comment.likes,
+                id: comment.id,
                 avatar: { url: '', description: 'Gray Avatar' }
             });
             commentsContainer.appendChild(commentEl);
