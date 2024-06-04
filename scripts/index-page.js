@@ -191,9 +191,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         const navLinks = document.querySelectorAll('.nav__link');
         navLinks.forEach(link => {
             if (window.innerWidth <= 767) {
-                link.style.setProperty('--underline-bottom', '-15px'); // Mobile
+                link.style.setProperty('--underline-bottom', '-15px'); 
             } else {
-                link.style.setProperty('--underline-bottom', '-30px'); // Desktop/Tablet
+                link.style.setProperty('--underline-bottom', '-30px'); 
             }
         });
     }
@@ -245,7 +245,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             link.addEventListener('click', () => {
                 navLinks.forEach(l => l.classList.remove('nav__link--active'));
                 link.classList.add('nav__link--active');
-                updateNavLinkColors();
             });
             link.addEventListener('mouseover', () => {
                 if (!link.classList.contains('nav__link--active')) {
@@ -260,12 +259,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    function updateNavLinkColors() {
-        const navLinks = document.querySelectorAll('.nav__link');
-        navLinks.forEach(link => {
-            link.style.color = link.classList.contains('nav__link--active') ? '#FFFFFF' : '#E1E1E1';
-        });
-    }
+    
 
     function debounce(func, wait) {
         let timeout;
@@ -283,3 +277,25 @@ document.addEventListener('DOMContentLoaded', async function () {
     addHoverAndClickEvents();
     window.addEventListener('resize', debounce(updateLayout, 100));
 });
+const navItems = [
+    { href: './index.html', text: 'Biography', active: true },
+    { href: './pages/shows.html', text: 'Shows', active: false },
+  ];
+
+  const navList = document.getElementById('navList');
+  
+  navItems.forEach(item => {
+    const li = document.createElement('li');
+    li.classList.add('nav__item');
+
+    const a = document.createElement('a');
+    a.href = item.href;
+    a.classList.add('nav__link');
+    if (item.active) {
+      a.classList.add('nav__link--active');
+    }
+    a.textContent = item.text;
+
+    li.appendChild(a);
+    navList.appendChild(li);
+  });

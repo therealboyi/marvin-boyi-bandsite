@@ -2,6 +2,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     const apiKey = '26032028-ded2-4965-b2ae-6996663fe119'; 
     const api = new BandSiteApi(apiKey);
 
+    // Navigation items array
+    const navItems = [
+        { href: '../index.html', text: 'Biography', active: false },
+        { href: '../pages/shows.html', text: 'Shows', active: true },
+    ];
+
+    // Function to dynamically generate navigation items
+    const navList = document.getElementById('navList');
+    navItems.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('nav__item');
+
+        const a = document.createElement('a');
+        a.href = item.href;
+        a.classList.add('nav__link');
+        if (item.active) {
+            a.classList.add('nav__link--active');
+        }
+        a.textContent = item.text;
+
+        li.appendChild(a);
+        navList.appendChild(li);
+    });
+
+    // Function to display shows
     async function displayShows() {
         const shows = await api.getShows();
         const ticketCardData = shows.map(show => ({
@@ -13,6 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         createTicketCards(ticketCardData);
     }
 
+    // Function to create music card
     function createMusicCard(data) {
         const musicSection = document.querySelector('.music-section');
         const musicCard = document.createElement('div');
@@ -41,86 +67,86 @@ document.addEventListener('DOMContentLoaded', async () => {
         musicSection.appendChild(musicCard);
     }
 
-    function createTicketCards(dataArray) {
-        const ticketSection = document.querySelector('.tickets-section');
-        const ticketList = document.createElement('div');
-        ticketList.classList.add('tickets__list');
-        ticketSection.appendChild(ticketList);
+    // Function to create ticket cards
+function createTicketCards(dataArray) {
+    const ticketSection = document.querySelector('.tickets-section');
+    const ticketList = document.createElement('div');
+    ticketList.classList.add('tickets__list');
+    ticketSection.appendChild(ticketList);
 
-        // Add header row with labels (only for desktop view)
-        const headerRow = document.createElement('div');
-        headerRow.classList.add('tickets__row', 'tickets__row--header');
+    const headerRow = document.createElement('div');
+    headerRow.classList.add('tickets__row', 'tickets__row--header');
 
-        const dateHeader = document.createElement('p');
-        dateHeader.classList.add('tickets__label');
-        dateHeader.textContent = "Date";
-        headerRow.appendChild(dateHeader);
+    const dateHeader = document.createElement('p');
+    dateHeader.classList.add('tickets__label');
+    dateHeader.textContent = "Date";
+    headerRow.appendChild(dateHeader);
 
-        const venueHeader = document.createElement('p');
-        venueHeader.classList.add('tickets__label');
-        venueHeader.textContent = "Venue";
-        headerRow.appendChild(venueHeader);
+    const venueHeader = document.createElement('p');
+    venueHeader.classList.add('tickets__label');
+    venueHeader.textContent = "Venue";
+    headerRow.appendChild(venueHeader);
 
-        const locationHeader = document.createElement('p');
-        locationHeader.classList.add('tickets__label');
-        locationHeader.textContent = "Location";
-        headerRow.appendChild(locationHeader);
+    const locationHeader = document.createElement('p');
+    locationHeader.classList.add('tickets__label');
+    locationHeader.textContent = "Location";
+    headerRow.appendChild(locationHeader);
 
-        // Add an empty p element to align with the button column
-        const emptyHeader = document.createElement('p');
-        emptyHeader.classList.add('tickets__label');
-        headerRow.appendChild(emptyHeader);
+    const emptyHeader = document.createElement('p');
+    emptyHeader.classList.add('tickets__label');
+    headerRow.appendChild(emptyHeader);
 
-        ticketList.appendChild(headerRow);
+    ticketList.appendChild(headerRow);
 
-        dataArray.forEach((data, index) => {
-            const ticketCard = document.createElement('div');
-            ticketCard.classList.add('tickets__card');
+    dataArray.forEach((data, index) => {
+        const ticketCard = document.createElement('div');
+        ticketCard.classList.add('tickets__card');
 
-            const dateLabel = document.createElement('p');
-            dateLabel.classList.add('tickets__label', 'tickets__label--mobile');
-            dateLabel.textContent = "Date";
-            ticketCard.appendChild(dateLabel);
-            const dateValue = document.createElement('p');
-            dateValue.classList.add('tickets__value', 'tickets__date');
-            dateValue.textContent = data.date;
-            ticketCard.appendChild(dateValue);
+        const dateLabel = document.createElement('p');
+        dateLabel.classList.add('tickets__label', 'tickets__label--mobile');
+        dateLabel.textContent = "Date";
+        ticketCard.appendChild(dateLabel);
+        const dateValue = document.createElement('p');
+        dateValue.classList.add('tickets__value', 'tickets__date', 'tickets__date--bold'); 
+        dateValue.textContent = data.date;
+        ticketCard.appendChild(dateValue);
 
-            const venueLabel = document.createElement('p');
-            venueLabel.classList.add('tickets__label', 'tickets__label--mobile');
-            venueLabel.textContent = "Venue";
-            ticketCard.appendChild(venueLabel);
-            const venueValue = document.createElement('p');
-            venueValue.classList.add('tickets__value');
-            venueValue.textContent = data.venue;
-            ticketCard.appendChild(venueValue);
+        const venueLabel = document.createElement('p');
+        venueLabel.classList.add('tickets__label', 'tickets__label--mobile');
+        venueLabel.textContent = "Venue";
+        ticketCard.appendChild(venueLabel);
+        const venueValue = document.createElement('p');
+        venueValue.classList.add('tickets__value');
+        venueValue.textContent = data.venue;
+        ticketCard.appendChild(venueValue);
 
-            const locationLabel = document.createElement('p');
-            locationLabel.classList.add('tickets__label', 'tickets__label--mobile');
-            locationLabel.textContent = "Location";
-            ticketCard.appendChild(locationLabel);
-            const locationValue = document.createElement('p');
-            locationValue.classList.add('tickets__value');
-            locationValue.textContent = data.location;
-            ticketCard.appendChild(locationValue);
+        const locationLabel = document.createElement('p');
+        locationLabel.classList.add('tickets__label', 'tickets__label--mobile');
+        locationLabel.textContent = "Location";
+        ticketCard.appendChild(locationLabel);
+        const locationValue = document.createElement('p');
+        locationValue.classList.add('tickets__value');
+        locationValue.textContent = data.location;
+        ticketCard.appendChild(locationValue);
 
-            const buyTicketsButton = document.createElement('a');
-            buyTicketsButton.classList.add('tickets__button');
-            buyTicketsButton.href = data.ticketUrl;
-            buyTicketsButton.textContent = "BUY TICKETS";
-            ticketCard.appendChild(buyTicketsButton);
+        const buyTicketsButton = document.createElement('a');
+        buyTicketsButton.classList.add('tickets__button');
+        buyTicketsButton.href = data.ticketUrl;
+        buyTicketsButton.textContent = "BUY TICKETS";
+        ticketCard.appendChild(buyTicketsButton);
 
-            ticketList.appendChild(ticketCard);
+        ticketList.appendChild(ticketCard);
 
-            if (index < dataArray.length - 1) {
-                const divider = document.createElement('div');
-                divider.classList.add('tickets__divider');
-                ticketList.appendChild(divider);
-            }
-        });
+        if (index < dataArray.length - 1) {
+            const divider = document.createElement('div');
+            divider.classList.add('tickets__divider');
+            ticketList.appendChild(divider);
+        }
+    });
 
-        adjustCardPadding();
-    }
+    adjustCardPadding();
+}
+
 
     function adjustCardPadding() {
         const ticketCards = document.querySelectorAll('.tickets__card');
@@ -178,7 +204,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // Adjust nav link underline for mobile
         const navLinks = document.querySelectorAll('.nav__link');
         navLinks.forEach(link => {
             if (window.innerWidth <= 767) {

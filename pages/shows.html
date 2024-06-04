@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shows - The Bees Knees</title>
   <link rel="stylesheet" href="../styles/shows.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer src="../scripts/band-site-api.js"></script>
+  <script defer src="../scripts/build-shows-page.js"></script>
 </head>
 <body>
   <header class="header">
     <nav class="nav">
-      <a href="#" class="nav__logo">
+      <a href="../index.html" class="nav__logo">
         <img src="../assets/logos/Logo-bandsite.svg" alt="Bandsite Logo" />
       </a>
-      <ul class="nav__list">
-        <li class="nav__item">
-          <a href="../index.html" class="nav__link">Biography</a>
-        </li>
-        <li class="nav__item">
-          <a href="../pages/shows.html" class="nav__link nav__link--active">Shows</a>
-        </li>
+      <ul class="nav__list" id="navList">
+        <!-- Navigation items will be generated here by JavaScript -->
       </ul>
     </nav>
   </header>
@@ -31,42 +29,40 @@
   <footer class="footer">
     <div class="footer__contact footer__contact--top-left">
       <h2 class="footer__header">Get in Touch</h2>
-      <div class="footer__icons">
-        <a href="#"><img src="../assets/icons/Icon-instagram.svg" alt="Instagram" /></a>
-        <a href="#"><img src="../assets/icons/Icon-facebook.svg" alt="Facebook" /></a>
-        <a href="#"><img src="../assets/icons/Icon-twitter.svg" alt="Twitter" /></a>
+    </div>
+    <div class="footer__columns">
+      <div class="footer__contact">
+        <p class="footer__text footer__text--bold">The Bees Knees Management</p>
+        <p class="footer__text">503 Broadway Penthouse,</p>
+        <p class="footer__text">New York, NY 10012, USA</p>
+        <a href="mailto:info@thebeesknees.com" class="footer__link">info@thebeesknees.com</a>
+      </div>
+      <div class="footer__contact">
+        <p class="footer__text footer__text--bold">Limitless Artist Group</p>
+        <p class="footer__text">Booking Agent for</p>
+        <p class="footer__text">US / South America / Japan</p>
+        <a href="mailto:bookings@limitlessag.com" class="footer__link">bookings@limitlessag.com</a>
+      </div>
+      <div class="footer__contact">
+        <p class="footer__text footer__text--bold">ARCH Entertainment</p>
+        <p class="footer__text">Booking Agent for</p>
+        <p class="footer__text">UK / EU / AU</p>
+        <a href="mailto:bookings@archentertainment.com" class="footer__link">bookings@archentertainment.com</a>
       </div>
     </div>
-    
-    <div class="footer__contact">
-      <p class="footer__text">The Bees Knees Management</p>
-      <p class="footer__text">503 Broadway Penthouse,</p>
-      <p class="footer__text">New York, NY 10012, USA</p>
-      <a href="mailto:info@thebeesknees.com" class="footer__link">info@thebeesknees.com</a>
-    </div>
-    <div class="footer__contact">
-      <p class="footer__text">Limitless Artist Group</p>
-      <p class="footer__text">Booking Agent for</p>
-      <p class="footer__text">US / South America / Japan</p>
-      <a href="mailto:bookings@limitlessag.com" class="footer__link">bookings@limitlessag.com</a>
-    </div>
-    <div class="footer__contact">
-      <p class="footer__text">ARCH Entertainment</p>
-      <p class="footer__text">Booking Agent for UK / EU / AU</p>
-      <a href="mailto:bookings@archentertainment.com" class="footer__link">bookings@archentertainment.com</a>
-    </div>
     <div class="footer__brand">
-      <a href="#" class="footer__brand-link">
+      <a href="../index.html" class="footer__brand-link">
         <img src="../assets/logos/Logo-bandsite.svg" alt="Bandsite Logo" />
       </a>
+    </div>
+    <div class="footer__social-icons">
+      <a href="#"><img src="../assets/icons/Icon-instagram.svg" alt="Instagram" /></a>
+      <a href="#"><img src="../assets/icons/Icon-facebook.svg" alt="Facebook" /></a>
+      <a href="#"><img src="../assets/icons/Icon-twitter.svg" alt="Twitter" /></a>
     </div>
     <div class="footer__copyright">
       Copyright The Bees Knees © 2023 All Rights Reserved
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="../scripts/band-site-api.js"></script>
-  <script src="../scripts/build-shows-page.js"></script>
 </body>
 </html>
